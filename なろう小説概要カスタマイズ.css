@@ -1,0 +1,85 @@
+@-moz-document regexp("^http://(ncode|novel18)\\.syosetu\\.com/n[0-9a-z]+/$") {
+.novel_writername {
+    text-align: left;
+    border-bottom: 1px solid gray;
+    padding-bottom: 16px;
+}
+
+table#ex_info th,
+table#ex_info td {
+    padding: 4px 8px;
+    font-size: small;
+}
+
+table#ex_info th {
+    white-space: nowrap;
+}
+
+#novel_tags th {
+	vertical-align: middle;
+}
+
+#novel_tags td span {
+    padding: 0px 6px;
+    background: #EEE;
+    display: list-item;
+    float: left;
+    list-style-type: none;
+    margin: 2px 8px 2px 0;
+}
+
+#chapters_container {
+    margin: 16px 0;
+}
+
+#chapters_container>* {
+    margin: 8px 0;
+}
+
+#chapters_container>h3 {
+    float: left;
+    margin-right: 16px;
+}
+
+#toggle_chapter {
+    background-color: white;
+}
+
+#novel_tags>li {
+    display: inline;
+    margin-right: 8px;
+}
+
+#novel_ex {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 20px 0;
+}
+
+.chapter_title {
+    cursor: pointer;
+    padding: 4px 0 0 0 !important;
+    margin-top: 30px;
+}
+
+.chapter_title:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.subtitle .story_number {
+    font-size: small;
+    margin-right: 8px;
+    color: gray;
+}
+
+.chapter_title .story_number {
+    font-size: small;
+    margin-left: 16px;
+    color: gray;
+}
+
+/* overwrite */
+dl.novel_sublist2 dd {
+    padding: 10px 10px 2px 0px;
+}
+}

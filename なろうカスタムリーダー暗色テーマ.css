@@ -1,0 +1,53 @@
+@-moz-document regexp("http://(ncode|novel18)\\.syosetu\\.com/n\\w+/\\d+/(\\?y=[0-9]+)?") {
+html {
+    --outer-bg-color: #2E5D84;
+    --text-color: #DDD;
+    --link-color: #8BD;
+    background-color: var(--outer-bg-color);
+}
+
+body {
+    background-color: var(--outer-bg-color);
+}
+
+#container {
+    background-color: var(--outer-bg-color);
+    margin-top: 105px;
+}
+
+#head-items, .contents1, #novel_contents {
+    background-color: #222426 !important;
+    color: var(--text-color);
+}
+
+#novel_color {
+    color: var(--text-color);
+}
+
+#head-items a,
+.contents1 a,
+.contents1 a:hover,
+.contents1 a:visited{
+    color: var(--link-color);
+}
+
+#head-items a:hover,
+.contents1 a:hover {
+    text-decoration: underline;
+}
+
+#novel_color a,
+#novel_color a:hover,
+#novel_color a:visited,
+#novel_contents a {
+    color: var(--text-color);
+}
+
+#novel_contents a:hover {
+    text-decoration: underline;
+}
+
+#novel_attention {
+    color: black;
+}
+}

@@ -1,0 +1,528 @@
+@-moz-document regexp("http://(ncode|novel18)\\.syosetu\\.com/n\\w+/\\d+/(\\?y=[0-9]+)?") {
+/********** STATIC STYLES **********/
+/* grayscale link color */
+.custom_link,
+.custom_link a {
+    color: rgb(50, 50, 50) !important;
+}
+
+.custom_link:hover,
+.custom_link a:hover {
+    text-decoration: underline;
+}
+
+.custom_link:visited,
+.custom_link a:visited {
+    color: rgb(50, 50, 50) !important;
+    top: 0.1;
+}
+
+/* grayscale flat button */
+.button_white {
+    color: #222;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 3px 4px;
+    -webkit-transition-duration: 0.1s;
+    /* Safari */
+    
+    transition-duration: 0.1s;
+}
+
+.button_white:hover {
+    color: black;
+    background-color: #EEE;
+    border: 1px solid darkgray;
+}
+
+/* hidden for element with animation */
+.hidden {
+    -webkit-transition-property: top;
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-delay: 0s;
+    top: -48px !important;
+}
+
+/* fade highlight */
+@-webkit-keyframes target-fade {
+    0% { background-color: rgba(0, 0, 0, 0); }
+    20% { background-color: magenta; }
+    80% { background-color: magenta; }
+    100% { background-color: rgba(0,0,0,0); }
+}
+@-moz-keyframes target-fade {
+    0% { background-color: rgba(0, 0, 0, 0); }
+    20% { background-color: magenta; }
+    80% { background-color: magenta; }
+    100% { background-color: rgba(0,0,0,0); }
+}
+@keyframes target-fade {
+    0% { background-color: rgba(0, 0, 0, 0); }
+    20% { background-color: magenta; }
+    80% { background-color: magenta; }
+    100% { background-color: rgba(0,0,0,0); }
+}
+.fade_hl {
+    -webkit-animation: target-fade 0.5s 1;
+    -moz-animation: target-fade 0.5s 1;
+    animation: target-fade 0.5s 1;
+}
+
+
+/********** HEADER **********/
+#head-items {
+    width: 700px;
+    margin: 0 auto;
+    padding: 8px 20px;
+    background-color: white;
+    margin-bottom: 5px;
+    text-align: center;
+}
+#head-items li {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+/***** Top Header *****/
+#top_header {
+    width: 100%;
+    height: 48px;
+    position: fixed;
+    background: white;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    border-bottom: 1px solid lightgray;
+}
+
+#top_header ul {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    height: 41px;
+}
+
+#top_header li {
+    margin-top: 12px;
+    float: left;
+    display: block;
+}
+
+/***** Sub Header *****/
+#novel_header {
+    -webkit-transition-property: top;
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-delay: 0s;
+    top: 0;
+}
+
+#head_nav {
+    width: 100% !important;
+    color: black;
+    text-align: center;
+    margin-top: 10px !important;
+}
+
+#head_nav li {
+    padding: 0 !important;
+    font-size: small !important;
+    float: none !important;
+	display: inline-block !important;
+    vertical-align: middle !important;
+    margin: 0 4px !important;
+}
+
+#head_nav li * {
+    vertical-align: middle;
+}
+
+#head_nav li a {
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+.shifted {
+    top: 49px !important;
+}
+
+/* novel title */
+#novel_header_title {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/* hide attention in title (ex:R18) */
+#novel_header_title .attention {
+    display: none;
+}
+
+/* subtitle */
+li#novel_header_subtitle {
+    font-size: large !important;
+    font-weight: bold;
+    font-family: "Meiryo";
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* novel number */
+#novel_header_no {
+    font-family: "Meiryo";
+    margin-top: 1px;
+}
+
+/* preview and next link */
+.novel_header_bn {
+    color: black;
+    margin-top: 6px;
+    font-weight: normal;
+}
+
+/* bookmark */
+.booklist {
+    margin: 0 !important;
+}
+
+.booklist_now a {
+    border: 0 !important;
+    background: 0 !important;
+    color: black !important;
+    width: auto !important;
+    font-size: 100% !important;
+}
+
+/* shiori */
+#head_nav li.bookmark_now a {
+    color: black !important;
+    padding: 2px 0 0 14px !important;
+    font-size: 90% !important;
+    text-align: left !important;
+}
+
+/* unread alert (undefined) */
+#alert_unread {
+    font-size: large;
+    font-weight: bold;
+    background-color: pink;
+    border: 4px solid magenta;
+    padding: 8px 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/********** CONTENTS **********/
+.novel_bn_back,
+.novel_bn_next {
+    width: 49%;
+    display: inline-block;
+    background-color: #444;
+    border-width: 1px;
+    border-style: none solid;
+    border-color: #333;
+    padding: 4px 0;
+}
+.novel_bn_blank {
+    width: 49%;
+    display: inline-block;
+    border-width: 1px;
+    border-style: none solid;
+    border-color: rgba(0,0,0,0);
+    padding: 4px 0;
+}
+.novel_bn a {
+    margin: 0;
+}
+.novel_bn_back:hover,
+.novel_bn_next:hover {
+    background-color: #555;
+}
+
+/* subtitle */
+.novel_subtitle {
+    padding-top: 16px;
+    visibility: hidden;
+}
+
+/* font for main text */
+#novel_p,
+#novel_honbun,
+#novel_a {
+    font-family: "MigMix 1M", "メイリオ", "Meiryo", 'Lucida Grande', "sans-serif";
+}
+
+/********** FOOTER **********/
+#footer_ex {
+    position: fixed;
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    /*rgba(255,255,255,0.5);*/
+    bottom: -3px;
+    left: -1px;
+    z-index: 5;
+    border-top: 1px solid gray;
+    color: black;
+    padding: 10px;
+    font-size: small;
+}
+
+.footer_item {
+    display: inline-block;
+    margin: 0 4px;
+}
+
+/* attention (ex:R18) */
+#footer_title .attention {
+    margin-right: 8px;
+}
+
+/* y offset view */
+#footer_y_offset {
+    cursor: pointer;
+}
+
+/* jump top button */
+#pageTop {
+    bottom: 55px;
+}
+
+/* feedly button */
+#feedly-mini {
+    bottom: 8px;
+}
+
+/* standard footer */
+#footer {
+    margin-bottom: 20px;
+}
+#footer_title, #footer_chapter {
+    max-width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#footer_title:hover, #footer_chapter:hover {/*
+    width: inherit;
+    white-space: normal;
+    overflow: auto;
+    text-overflow: initial;
+*/}
+
+/********** TOOLBOX **********/
+#toolbox {
+    position: fixed;
+    left: 4px;
+    bottom: 35px;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+}
+
+/*
+@keyframes toggle_tool_box_keyframe {
+  0% { background: white; }
+  50% { background: lightgray; }
+  100% { background: white; }
+}
+
+@-webkit-keyframes toggle_tool_box_keyframe {
+  0% { background: white; }
+  50% { background: lightgray; }
+  100% { background: white; }
+}
+*/
+
+/* toolbox toggle */
+#toggle_toolbox {
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    padding: 4px;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -webkit-user-select: none;
+}
+
+#toggle_toolbox:hover {
+    /*animation: toggle_tool_box_keyframe 1s;
+    -webkit-animation: toggle_tool_box_keyframe 1s;*/
+    background-color: lightgray;
+}
+
+#toggle_toolbox:active {
+    /*animation: toggle_tool_box_keyframe 1s;
+    -webkit-animation: toggle_tool_box_keyframe 1s;*/
+    background-color: gray;
+}
+
+/* toolbox items list */
+#toolbox_list {
+    padding: 4px;
+}
+
+.toolbox_item {
+    margin: 2px 0;
+    display: block;
+    border: 1px solid gray;
+}
+
+#toolbox_list>button {
+    width: 100%;
+}
+
+/* atom url */
+#atom_url_view {
+    background-color: white;
+    padding: 3px 0;
+    text-align: center;
+}
+
+#atom_url_view>a {
+    text-decoration: underline;
+}
+
+/* replacer */
+.replacer_item {
+    display: block;
+    margin: 2px auto;
+}
+
+.replacer_input {
+    width: 120px;
+}
+
+.replacer_input:focus {
+    outline: none;
+}
+
+#folder-moreInfo .toolbox_folder_container {
+    padding-top: 3px;
+}
+
+#folder-moreInfo th {
+    padding: 3px 2px;
+}
+
+#folder-moreInfo td {
+    text-align: right;
+    padding-right: 4px;
+}
+
+/* checkbox */
+.nc-checkbox {
+    background-color: white;
+    position: relative;
+    color: black;
+    -webkit-user-select: none;
+    text-align: left;
+    border: none;
+    font-size: small;
+}
+
+.blacked_when_hover:hover {
+    color: white;
+    background-color: gray;
+}
+
+.nc-checkbox input[type=checkbox] {
+    margin-right: 6px;
+    visibility: hidden;
+	-webkit-user-select: none;
+}
+
+.nc-checkbox input[type=checkbox]::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    left: 1px;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    background: #FFF;
+    border: 1px solid #444;
+    visibility: visible;
+}
+.nc-checkbox input[type=checkbox]:hover::before {
+    
+    background-color: #EEE;
+}
+
+.nc-checkbox input[type=checkbox]:checked::after {
+    content: "";
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    z-index: 2;
+    left: 5px;
+    top: 13px;
+    width: 6px;
+    height: 6px;
+    margin-top: -8px;
+    background-color: #666;
+    visibility: visible;
+}
+
+.nc-checkbox input[type=checkbox]:hover::after {
+    background-color: black;
+}
+
+.toolbox_folder {
+    background-color: white;
+    padding: 4px;
+    position: relative;
+}
+
+.toolbox_folder_toggle {
+    padding-left: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+
+.folder_opening:before {
+    content: "▼";
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    font-size: xx-small;
+    color: #555;
+}
+
+.folder_opening:hover:before,
+.folder_closing:hover:before{
+    color: black;
+    font-weight: bold;
+}
+
+.folder_closing:before {
+    content: "▼";
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    font-size: xx-small;
+}
+.toolbox_folder_container {
+    border-top: 1px solid #DDD;
+    margin-top: 2px;
+    padding-top: 2px;
+}
+.toolbox_folder_container .toolbox_item {
+    width: 100%;
+}
+
+#popup {
+    position: fixed;
+    background-color: rgba(255, 255, 255, .8);
+    right: 8px;
+    bottom: 45px;
+    z-index: 100;
+    padding: 4px 8px;
+    border: 2px solid gray;
+    border-radius: 3px;
+    display: none;
+}
+}
