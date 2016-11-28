@@ -208,7 +208,8 @@ $(function() {
             return "<span>" + val + "</span>";
         }).join(""));
         if (isR18) return;
-        $.get("http://localhost:8888/ranking?type=all&ncode=" + json.ncode.toLowerCase()).done(function(data) {
+        const ncode = json.ncode.toLowerCase();
+        $.get("http://localhost:8888/ranking?type=all&ncode=" + ncode).done(function(data) {
             const jsonRanking = JSON.parse(data);
             function addRanking(id, name, data) {
                 let value;
@@ -224,6 +225,19 @@ $(function() {
             addRanking('monthly', "月間ランキング", jsonRanking.monthly);
             addRanking('quater', "四半期ランキング", jsonRanking.quater);
             addRanking('all', "累計ランキング", jsonRanking.total);
+
+            $.get("http://localhost:8888/rankhis?ncode=" + ncode).done(function(data) {
+                const histories = JSON.parse(data);
+                for (const type of ['daily', 'weekly', 'monthly', 'quater']) {
+                    const his = histories[type.substring(0, 1)];
+                    if (his) {
+                        const d = his.rtype;
+                        $(`#novel_ranking_${type} td`).append(` (最高${his.rank}位 ${d.substring(0, 4)}/${d.substring(4, 6)}/${d.substring(6, 8)})`);
+                    }
+                }
+            }).fail((jqXHR, textStatus, errorThrown) => {
+                console.error(jqXHR, textStatus, errorThrown);
+            });
         }).fail((jqXHR, textStatus, errorThrown) => {
             console.error(jqXHR, textStatus, errorThrown);
         });
