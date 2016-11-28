@@ -61,6 +61,7 @@ class Configuration {
     }
     reload() {
         this.data = JSON.parse(localStorage.getItem(this.id), this.jsonParser);
+        return this;
     }
     asList() {
         return Object.keys(this.data).map(k => this.data[k]);
@@ -984,7 +985,7 @@ if (location.pathname === '/') {
                 id: 'edit-bookmark-comment', class: 'toolbox_item button_white',
                 text: 'コメントを編集',
                 click: function() {
-                    const novel = config.get(unsafeWindow.novel.id);
+                    const novel = config.reload().get(unsafeWindow.novel.id);
                     const comment = novel.bookmarks[novel.pageNo].comment;
                     const s = prompt('コメントを編集', comment ? comment : '');
                     if (s !== null) {
@@ -996,7 +997,7 @@ if (location.pathname === '/') {
             }).appendTo(folderMore);
         }
         folderMore.append(toggleButton('toggle-bookmark', '栞を挟む', '栞を外す', isBookmarked, function(detail) {
-            const novel = config.get(unsafeWindow.novel.id);
+            const novel = config.reload().get(unsafeWindow.novel.id);
             if (detail.pressed) {
                 const bookmark = {
                     id: novel.id, pageNo: novel.pageNo,
@@ -1028,7 +1029,7 @@ if (location.pathname === '/') {
         $('<button/>', {
             id: 'setLatestToIt', class: 'toolbox_item button_white', text: '読了話をここに設定',
             click: function() {
-                const novel = config.get(unsafeWindow.novel.id);
+                const novel = config.reload().get(unsafeWindow.novel.id);
                 novel.latestReadedNo = novel.pageNo;
                 novel.latestReadedSubtitle = novel.subtitle;
                 novel.latestReadedDate = novel.date;
