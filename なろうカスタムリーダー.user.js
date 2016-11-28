@@ -594,6 +594,11 @@ $(function() {
     ]);
     addReplacement('replace_tpr', '三点リーダー', /・{2,}/g, '……');
     addReplacement('replace_dash', 'ダッシュ', /ー{2,}/g, '――');
+    addReplacement('replace_convNewline', '会話文改行削除', /\n[「『].+(?:<br>\n.+)*[」』]<br>/g, s => {
+        console.log(s);
+        return s.replace(/<br>\n　?/g, '');
+    });
+    addReplacement('replace_newlines', '連続改行調整', /(?:<br>\n){3,}/g, '<br>\n<br>\n');
 
     // ////////// その他 //////////
     const moreFolder = createFolder('その他', 'more', toolboxList);
