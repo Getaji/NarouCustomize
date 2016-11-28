@@ -458,7 +458,9 @@ if (location.pathname === '/') {
                     }
                 }
                 config.save();
-                const updateNovelsLi = updatedNovels.map(n => `<li><a href="#novel-${n.ncode}">${n.title}</a>  ${n.novelupdated_at.toLocaleString()}</li>`).join('');
+                const updateNovelsLi = updatedNovels.map(n => {
+                    return `<li><a href="#novel-${n.ncode}">${n.title}</a> <a href="/${n.ncode}/${n.general_all_no}/">${n.general_all_no}話</a> ${n.novelupdated_at.toLocaleString()}</li>`;
+                }).join('');
                 message(`サーバーからの取得に成功(更新${updatedNovels.length>0?updatedNovels.length+'件)：':'なし)'}<ul>` + updateNovelsLi + '</ul>');
                 search();
             }).fail(function(xhr, status, thrown) {
