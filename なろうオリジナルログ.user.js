@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         なろうオリジナルログ
-// @namespace    http://tampermonkey.net/
+// @namespace    http://getaji.github.io/
 // @version      1.0.0
-// @description  小説家になろうの閲覧履歴を独自に管理します。別UserScript"なろう小説レイアウト弄り"が必要です。
+// @description  小説家になろうの閲覧履歴を独自に管理します。別UserScript"なろうカスタムリーダー"が必要です。
 // @author       Getaji
 // @match        http://ncode.syosetu.com/*/*/*
 // @match        http://novel18.syosetu.com/*/*/*
