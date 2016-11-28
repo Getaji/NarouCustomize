@@ -741,7 +741,7 @@ if (location.pathname === '/') {
               template = $.templates(`
 <div id="novel-{{:id}}" class="novel" novel-id="{{:id}}">
 <div class="novel-title">
-<a href="${location.href}{{:id}}/">{{:title}}</a>
+<a href="/{{:id}}/">{{:title}}</a>
 </div>
 <div class="novel-author">
 作者：{{if authorURL}}<a href="{{:authorURL}}">{{:authorName}}</a>{{else}}{{:authorName}}{{/if}}
@@ -750,39 +750,39 @@ if (location.pathname === '/') {
 <div class="novel-numLastRead">
 最新閲覧： 
 {{if pageNo > 1}}
-<a href="${location.href}{{:id}}/{{:pageNo-1}}/">&#171;</a>
+<a href="/{{:id}}/{{:pageNo-1}}/">&#171;</a>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
 {{:pageNo}}
 {{if pageNo < pageCount}}
-<a href="${location.href}{{:id}}/{{:pageNo+1}}/">&#187;</a>
+<a href="/{{:id}}/{{:pageNo+1}}/">&#187;</a>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
 {{if chapter}}{{:chapter}}{{/if}}
-<a href="${location.href}{{:id}}/{{:pageNo}}/">{{:subtitle}}</a>
+<a href="/{{:id}}/{{:pageNo}}/">{{:subtitle}}</a>
 {{:date.toLocaleString()}}
 </div>
 {{if latestReadedNo && latestReadedNo > pageNo}}
 <div class="novel-numLastRead">
 読了話： 
 {{if latestReadedNo > 1}}
-<a href="${location.href}{{:id}}/{{:latestReadedNo-1}}/">&#171;</a>
+<a href="/{{:id}}/{{:latestReadedNo-1}}/">&#171;</a>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
 {{:latestReadedNo}}
 {{if latestReadedNo < pageCount}}
-<a href="${location.href}{{:id}}/{{:latestReadedNo+1}}/">&#187;</a>
+<a href="/{{:id}}/{{:latestReadedNo+1}}/">&#187;</a>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
-{{if latestReadedChapter}}{{:latestReadedChapter}} {{/if}}<a href="${location.href}{{:id}}/{{:latestReadedNo}}/">{{:latestReadedSubtitle}}</a> {{:latestReadedDate.toLocaleString()}}
+{{if latestReadedChapter}}{{:latestReadedChapter}} {{/if}}<a href="/{{:id}}/{{:latestReadedNo}}/">{{:latestReadedSubtitle}}</a> {{:latestReadedDate.toLocaleString()}}
 </div>
 {{/if}}
 <div class="novel-numLatest">
-最新話： <a href="${location.href}{{:id}}/{{:pageCount}}/">{{:pageCount}}</a>  {{if updatedAt}}{{:updatedAt.toLocaleString()}}{{/if}}
+最新話： <a href="/{{:id}}/{{:pageCount}}/">{{:pageCount}}</a>  {{if updatedAt}}{{:updatedAt.toLocaleString()}}{{/if}}
 </div>
 <div class="novel-bookmarks">
 {{if bookmarksLen > 0}}
@@ -793,7 +793,7 @@ if (location.pathname === '/') {
 <td class="novel-bkm-index">{{>prop.pageNo}}</td>
 <td>
 {{if prop.chapter}}{{>prop.chapter}}{{/if}}
-<a href="${location.href}{{>prop.id}}/{{>prop.pageNo}}/">{{>prop.subtitle}}</a>
+<a href="/{{>prop.id}}/{{>prop.pageNo}}/">{{>prop.subtitle}}</a>
 {{if prop.comment}}<span class="novel-bkm-comment">"{{>prop.comment}}"</span>{{/if}}
 {{>prop.date.toLocaleString()}}
 </td>
