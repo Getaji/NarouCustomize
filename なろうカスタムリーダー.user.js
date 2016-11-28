@@ -584,9 +584,6 @@ $(function() {
     addReplacement('replace_removePeriod', '。」', /。\s?([」』])/g, '$1');
     addReplacement('replace_formatText', '構文最適化', [
         //[/\n　<br>/g, '\n<br>'],
-        [/^([^　「『(<br>)])/gm, '　$1'],  // 行頭字下げ
-        [/(?!<br>\n)(.)<br>\n([「『])/g, '$1<br>\n<br>\n$2'],  // 会話行の前に空行
-        [/([」』])<br>\n(?!<br>)(.)/g, '$1<br>\n<br>\n$2'],  // 会話行の後に空行
         [/^([^　「『（(<br>)])/gm, '　$1'],  // 行頭字下げ
         [/(?!<br>\n)(.)<br>\n([「『（])/g, '$1<br>\n<br>\n$2'],  // 会話行の前に空行
         [/([」』）])<br>\n(?!<br>)(.)/g, '$1<br>\n<br>\n$2'],  // 会話行の後に空行
@@ -595,8 +592,8 @@ $(function() {
         [/([？！])([^\s　『「」』！？(<br>)])/g, '$1　$2'],  // 感嘆符の後に空白
         [/。\s?([』」）])/g, '$1']  // 閉じカッコの前の句点を削除
     ]);
-    addReplacement('button_tpr', '三点リーダー', /・{2,}/g, '……');
-    addReplacement('button_dash', 'ダッシュ', /ー{2,}/g, '――');
+    addReplacement('replace_tpr', '三点リーダー', /・{2,}/g, '……');
+    addReplacement('replace_dash', 'ダッシュ', /ー{2,}/g, '――');
 
     // ////////// その他 //////////
     const moreFolder = createFolder('その他', 'more', toolboxList);
