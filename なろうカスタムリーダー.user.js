@@ -189,25 +189,22 @@ $(function() {
     $('.margin_l10r20').removeClass('margin_l10r20');
     $('.contents1 .attention').addClass('margin_r20');
 
-    const novelPre = $('#novel_p');
-    const novelHonbun = $('#novel_honbun');
-    const novelAfter = $('#novel_a');
+    const novelPre = $('#novel_p'),
+          novelHonbun = $('#novel_honbun'),
+          novelAfter = $('#novel_a');
 
     // 本文置換文字 最後に処理
     const honbunReplaces = [
-        // [/　「/g, '「'],
-        // [/。　/g, '。'],
-        // [/^(<br>[\n\s]?)*/g, ''],
-        // [/(<br>[\n\s]?)*$/g, ''],
         [/^(?:<br>|\n)+/, ''],
         [/(?:<br>|\n|　)+　?$/, '']
     ];
 
     // タイトル・作者・章
-    // 不安が残るので要修正
     const contents1Items = $('.contents1').html().trim().split('\n');
 
     // //////////////////// 書き換え開始 ////////////////////
+
+    // //////////////////// 基本CSSを差し替え ////////////////////
     const container = $('#container'),
           defCSS = $('link[href="http://sbo.syosetu.com/20160906/ncout2.css"]');
     if (defCSS.length > 0)
@@ -263,7 +260,6 @@ $(function() {
     }
 
     // ////////// タイトル //////////
-    // const title = $('.contents1 a').eq(0);
     const titleText = contents1Items[0],
           subTitleText = $('.novel_subtitle').text().trim(),
           headerText = subTitleText;// + '　-　' + titleText;
@@ -275,7 +271,7 @@ $(function() {
 
     topHeaderList.append(`<li id='novel_header_title'>${titleText}</li>`);
 
-    // ////////// 番号 //////////
+    // ////////// ページ番号 //////////
     const novelNo = $('#novel_no'),
           noSplit = novelNo.text().split('/');
     novel.pageNo = Number.parseInt(noSplit[0]);
