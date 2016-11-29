@@ -834,7 +834,7 @@ if (location.pathname === '/') {
 <button class="novel-edit-json">編集</button>
 <button class="novel-update">更新</button>
 <button class="novel-delete">削除</button>
-<label class="checkboxLabel" style="vertical-align:middle;"><input class="novel-excludeUpdate" type="checkbox" {{if excludeUpdate}}checked={{:excludeUpdate}}{{/if}}/>更新から除外</label>
+<label for="excludeUpdate-{{:id}}" class="checkboxLabel" style="vertical-align:middle;"><input id="excludeUpdate-{{:id}}" class="novel-excludeUpdate" type="checkbox" {{if excludeUpdate}}checked={{:excludeUpdate}}{{/if}}/>更新から除外</label>
 </div>
 </div>
 `);
