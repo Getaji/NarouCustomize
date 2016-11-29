@@ -244,7 +244,7 @@ $(function() {
             if (!isShowingTopHeader) {
                 showHeader();
             }
-        } else {
+        } else if (window.pageYOffset > prevY) {
             if (isShowingTopHeader) {
                 hideHeader();
             }
