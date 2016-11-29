@@ -581,15 +581,15 @@ $(function() {
     addReplacement('replace_removePeriod', '。」', /。\s?([」』])/g, '$1');
     addReplacement('replace_formatText', '構文最適化', [
         //[/\n　<br>/g, '\n<br>'],
-        [/[・.]{2,}/g, '……'],  // 三点リーダー
         [/^([^　「『（(?:<br>)]|<ruby>)/gm, '　$1'],  // 行頭字下げ
         [/(?!<br>\n)(.)<br>\n([「『])/g, '$1<br>\n<br>\n$2'],  // 会話行の前に空行(普通のカッコは会話行として使われないパターンがあるので一旦除外)
         [/([」』])<br>\n(?!<br>)(.)/g, '$1<br>\n<br>\n$2'],  // 会話行の後に空行
+        [/[・.]{2,}(?!<\/rt>)/g, '……'],  // 三点リーダー
         [/ー{2,}/g, '――'],  // ダッシュ
         [/([？！])([^\s　『「」』！？(<br>)])/g, '$1　$2'],  // 感嘆符の後に空白
         [/。\s?([』」）])/g, '$1']  // 閉じカッコの前の句点を削除
     ]);
-    addReplacement('replace_tpr', '三点リーダー', /・{2,}/g, '……');
+    addReplacement('replace_tpr', '三点リーダー', /・{2,}(?!<\/rt>)/g, '……');
     addReplacement('replace_dash', 'ダッシュ', /ー{2,}/g, '――');
     addReplacement('replace_convNewline', '会話文改行削除', /\n[「『].+(?:<br>\n.+)*[」』]<br>/g, s => {
         console.log(s);
