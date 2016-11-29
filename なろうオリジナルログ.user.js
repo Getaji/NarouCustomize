@@ -41,13 +41,17 @@ class Configuration {
         return defaultValue;
     }
     put(key, value, isSave=false) {
-        if (this.data[key] === value) {
-            console.log(`No changed configuration: ${key}=`, valueStr(value));
+        if (!isSave && this.data[key] === value) {
+            console.debug(`No changed configuration: ${key}=`, valueStr(value));
             return;
         }
         this.data[key] = value;
-        this.save();
-        console.log(`Writed configuration: ${key}=`, valueStr(value));
+        if (isSave) {
+            this.save();
+            console.debug(`Put configuration: ${key}=`, valueStr(value));
+        } else {
+            console.debug(`Writed configuration: ${key}=`, valueStr(value));
+        }
     }
     setStrData(s) {
         this.data = JSON.parse(s, this.jsonParser);
