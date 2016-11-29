@@ -494,7 +494,7 @@ $(function() {
         checked: false, click: function() {
             rubyPrefix = this.checked ? '(' : '';
             rubySuffix = this.checked ? ')' : '';
-            $('rt').each(function() {
+            $('rt', container).each(function() {
                 this.innerHTML = rubyPrefix + this.getAttribute('value') + rubySuffix;
             });
         }
