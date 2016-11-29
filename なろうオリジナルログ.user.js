@@ -139,6 +139,9 @@ button:active {
 .__m_b20 {
 margin-bottom: 20px;
 }
+.inline {
+display: inline-block;
+}
 #header {
     border-bottom: 1px solid #DDD;
     background: #EEE;
@@ -256,6 +259,9 @@ padding-left: 4px;
 }
 .novel-title~* {
 margin-left: 10px;
+}
+.novel-subtitle {
+/*text-decoration: underline;*/
 }
 .novel-tags-view::empty {
 content: 'なし';
@@ -770,7 +776,7 @@ if (location.pathname === '/') {
 &nbsp;&nbsp;
 {{/if}}
 {{if chapter}}{{:chapter}}{{/if}}
-<a href="/{{:id}}/{{:pageNo}}/">{{:subtitle}}</a>
+<div class="novel-subtitle inline"><a href="/{{:id}}/{{:pageNo}}/">{{:subtitle}}</a></div>
 {{:date.toLocaleString()}}
 </div>
 {{if latestReadedNo && latestReadedNo > pageNo}}
