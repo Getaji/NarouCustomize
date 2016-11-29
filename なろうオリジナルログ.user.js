@@ -91,50 +91,50 @@ body {
 --light-color: #dde9ec;
 }
 button {
-    background-color: var(--accent-color);
-    color: white;
-    border: 0px;
-    border-radius: 2px;
-    padding: 2px 4px;
+background-color: var(--accent-color);
+color: white;
+border: 0px;
+border-radius: 2px;
+padding: 2px 4px;
 }
 button:hover {
-    background: #316871;
+background: #316871;
 }
 button:active {
-    background: #275961;
+background: #275961;
 }
 .checkboxLabel {
-    background-color: var(--accent-color);
-    padding: 2px 4px;
-    color: white;
-    border-radius: 2px;
+background-color: var(--accent-color);
+padding: 2px 4px;
+color: white;
+border-radius: 2px;
 }
 .checkboxLabel input {
-    visibility: hidden;
-    position: relative;
+visibility: hidden;
+position: relative;
 }
 .checkboxLabel input::before {
-    content: "";
-    position: absolute;
-    visibility: visible;
-    border-width: 0 2px 2px 0;
-    border-style: solid;
-    border-color: #444;
-    width: 4px;
-    height: 11px;
-    transform: rotate(40deg);
-    top: 0px;
-    left: 3px;
-    background: none;
+content: "";
+position: absolute;
+visibility: visible;
+border-width: 0 2px 2px 0;
+border-style: solid;
+border-color: #444;
+width: 4px;
+height: 11px;
+transform: rotate(40deg);
+top: 0px;
+left: 3px;
+background: none;
 }
 .checkboxLabel input:checked::before {
-    border-color: white;
+border-color: white;
 }
 .checkboxLabel input:hover::before {
-    border-color: #BBB;
+border-color: #BBB;
 }
 .checkboxLabel input:active::before {
-    border-color: black;
+border-color: black;
 }
 .__m_b20 {
 margin-bottom: 20px;
@@ -143,13 +143,13 @@ margin-bottom: 20px;
 display: inline-block;
 }
 #header {
-    border-bottom: 1px solid #DDD;
-    background: #EEE;
+border-bottom: 1px solid #DDD;
+background: #EEE;
 }
 #title {
-    padding: 10px;
-    text-align: center;
-    background: white;
+padding: 10px;
+text-align: center;
+background: white;
 }
 #container {
 margin: 0 auto;
@@ -200,8 +200,8 @@ margin: 4px;
 padding: 4px 6px;
 }
 #buttons {
-    margin: auto;
-    width: 80%;
+margin: auto;
+width: 80%;
 }
 #buttons button {
 padding: 8px;
@@ -211,7 +211,7 @@ margin-right: 4px;
 }
 #searchBox {
 margin: 30px auto;
-    width: 80%;
+width: 80%;
 }
 #searchBox-input {
 font-size: medium;
@@ -225,14 +225,14 @@ margin-left: 10px;
 .contentsBlock {
 padding: 4px 10px;
 margin: 10px auto;
-    background-color: #F5F5F5;
+background-color: #F5F5F5;
 }
 #navi-nomal, #navi-r18 {
 margin-bottom: 20px;
 }
 #message {
 position: relative;
-    padding-left: 24px;
+padding-left: 24px;
 }
 #message-clear {
 position: absolute;
@@ -245,7 +245,7 @@ margin-left: 20px;
 margin-top: 20px;
 }
 #novels-count {
-    border-bottom: 1px solid #DDD;
+border-bottom: 1px solid #DDD;
 }
 .novel {
 margin: 16px 0;
@@ -276,7 +276,7 @@ cursor: pointer;
 margin: 2px;
 border-radius: 2px;
 display: inline-block;
-    line-height: normal;
+line-height: normal;
 }
 .novel-tag:hover {
 background-color: #cad8dc;
@@ -285,11 +285,11 @@ background-color: #cad8dc;
 margin-left: 10px;
 }
 .novel-bookmark:hover {
-    background: #EEE;
+background: #EEE;
 }
 .novel-bkm-index {
-    padding-right: 8px;
-    text-align: right;
+padding-right: 8px;
+text-align: right;
 }
 .novel-bkm-comment {
 color: #777;
