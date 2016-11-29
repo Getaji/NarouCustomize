@@ -28,6 +28,7 @@ class Configuration {
             this.data = initialData ? initialData : {};
             localStorage.setItem(id, JSON.stringify(this.data));
         }
+        console.debug('Constructed configuration.');
     }
     get(key, defaultValue, isSaveDefault=false) {
         if (key in this.data) {
@@ -36,7 +37,7 @@ class Configuration {
         if (isSaveDefault) {
             this.data[key] = defaultValue;
             this.save();
-            console.log(`Writed new configuration: ${key} =`, valueStr(defaultValue));
+            console.debug(`Writed new configuration: ${key} =`, valueStr(defaultValue));
         }
         return defaultValue;
     }
@@ -58,13 +59,16 @@ class Configuration {
     }
     remove(key, isSave=true) {
         delete this.data[key];
+        console.debug('Deleted configuration:', key);
         if (isSave) this.save();
     }
     save() {
         localStorage.setItem(this.id, JSON.stringify(this.data));
+        console.debug('Saved configuration');
     }
     reload() {
         this.data = JSON.parse(localStorage.getItem(this.id), this.jsonParser);
+        console.debug('Reloaded configuration');
         return this;
     }
     asList() {
