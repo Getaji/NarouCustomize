@@ -943,8 +943,8 @@ if (location.pathname === '/') {
         function query(q) {
             return document.querySelector(q);
         }
-        const novel = unsafeWindow.novel,
-              savedNovel = config.get(novel.id, null, false),
+        let novel = unsafeWindow.novel;
+        const savedNovel = config.get(novel.id, null, false),
               foundChapter = novel.chapter !== undefined;
         if (location.host === 'novel18.syosetu.com') {
             novel.r18 = true;
@@ -954,18 +954,28 @@ if (location.pathname === '/') {
                 }
             }));
         }
+        function puts(...keys) {
+            for (const key of keys) {
+                const value = novel[key];
+                if (value !== undefined)
+                    savedNovel[key] = value;
+            }
+        }
+        novel.date = new Date();
         if (savedNovel) {
+            puts('authorName', 'chapter', 'date', 'id', 'pageCount', 'pageNo', 'subtitle', 'title');
+            if (!savedNovel.authorURL && novel.authorURL)
+                savedNovel.authorURL = novel.authorURL;
             const isUpdateLatestReaded = savedNovel.latestReadedNo && savedNovel.latestReadedNo <= novel.pageNo;
-            novel.latestReadedNo = isUpdateLatestReaded ? novel.pageNo : savedNovel.latestReadedNo;
-            novel.latestReadedSubtitle = isUpdateLatestReaded ? novel.subtitle : savedNovel.latestReadedSubtitle;
-            novel.latestReadedDate = isUpdateLatestReaded ? novel.date : savedNovel.latestReadedDate;
-            if (isUpdateLatestReaded && foundChapter)
-                novel.latestReadedChapter = novel.chapter;
-            else if (savedNovel.latestReadedChapter)
-                novel.latestReadedChapter = savedNovel.latestReadedChapter;
-            novel.tags = savedNovel.tags ? savedNovel.tags : [];
-            novel.bookmarks = savedNovel.bookmarks ? savedNovel.bookmarks : {};
-            novel.updatedAt = savedNovel.updatedAt;
+            if (isUpdateLatestReaded) {
+                savedNovel.latestReadedNo = novel.pageNo;
+                savedNovel.latestReadedSubtitle = novel.subtitle;
+                savedNovel.latestReadedDate = novel.date;
+                if (foundChapter)
+                    savedNovel.latestReadedChapter = novel.chapter;
+            }
+            savedNovel.bookmarksLen = Object.keys(savedNovel.bookmarks).length;
+            novel = savedNovel;
         } else {
             novel.latestReadedNo = novel.pageNo;
             novel.latestReadedSubtitle = novel.subtitle;
@@ -974,9 +984,10 @@ if (location.pathname === '/') {
                 novel.latestReadedChapter = novel.chapter;
             novel.tags = [];
             novel.bookmarks = {};
+            novel.bookmarksLen = 0;
             novel.updatedAt = new Date('2000/1/1 0:00:00');
         }
-        novel.bookmarksLen = Object.keys(novel.bookmarks).length;
+        config.put(novel.id, novel, true);
 
         // BOOKMARK
         function toggleButton(id, textReleased, textPressed, pressed, onChange) {
@@ -1054,7 +1065,5 @@ if (location.pathname === '/') {
                 unsafeWindow.ncapi.popup('読了話をこのページに設定しました');
             }
         }).appendTo(folderMore);
-
-        config.put(novel.id, novel);
     });
 }
