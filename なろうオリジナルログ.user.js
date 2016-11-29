@@ -260,6 +260,9 @@ padding-left: 4px;
 .novel-title~* {
 margin-left: 10px;
 }
+.novel:target .novel-title {
+border-color: #e47e00;
+}
 .novel-subtitle {
 /*text-decoration: underline;*/
 }
