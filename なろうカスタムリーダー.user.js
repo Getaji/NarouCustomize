@@ -338,10 +338,11 @@ $(function() {
           chapter = $('.chapter_title');
     if (chapter.length > 0)
         addFooterItem('footer_chapter', chapter.text());
-    addFooterItem('footer_author', author);
-    const authorElm = $('#footer_author a');
-    novel.authorName = authorElm.text();
-    novel.authorURL = authorElm.prop('href');
+    const authorElm = addFooterItem('footer_author', author),
+          authorChild = authorElm.children();
+    novel.authorName = authorElm.text().substr(3);
+    if (authorChild)
+        novel.authorURL = authorElm.prop('href');
 
     // ////////// 行数・文字数 //////////
     const honbun = novelHonbun.text();
