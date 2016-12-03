@@ -261,16 +261,17 @@ $(function() {
     }
 
     // ////////// タイトル //////////
-    const titleText = contents1Items[0],
+    const titleText = $('.contents1 a').eq(0).text(),
+          titleHTML = `<a href="http://${location.host}/${novel.id}/">${titleText}</a>`,
           subTitleText = $('.novel_subtitle').text().trim(),
-          headerText = subTitleText;// + '　-　' + titleText;
+          headerText = subTitleText;
     headNav.append(`<li id='novel_header_subtitle' class='subtitle'>${headerText}</li>`);
-    $('title').text(`${subTitleText} - ${$('.contents1 a').eq(0).text()}`);
+    $('title').text(`${subTitleText} - ${titleText}`);
     $('.novel_subtitle').addClass('subtitle');
-    novel.title = $('.contents1 a').eq(0).text();
+    novel.title = titleText;
     novel.subtitle = subTitleText;
 
-    topHeaderList.append(`<li id='novel_header_title'>${titleText}</li>`);
+    topHeaderList.append(`<li id='novel_header_title'>${titleHTML}</li>`);
 
     // ////////// ページ番号 //////////
     const novelNo = $('#novel_no'),
