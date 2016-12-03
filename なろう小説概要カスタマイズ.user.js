@@ -168,7 +168,14 @@ $(function() {
         const json = JSON.parse(data)[1];
         console.log(json);
 
-        $(".novel_writername").eq(0).remove();
+        const writerNameLink = $('.novel_writername a');
+        let writerHTML;
+        if (writerNameLink.length === 0) {
+            $('.novel_writername').remove();
+        } else {
+            writerHTML = writerNameLink[0].outerHTML;
+        }
+        $('.novel_writername').remove();
         const isEnd = json.end === 0,
               firstUpAt = new Date(json.general_firstup),
               lastUpAt = new Date(json.general_lastup),
@@ -244,6 +251,6 @@ $(function() {
         });
     }).fail((jqXHR, textStatus, errorThrown) => {
         console.log(jqXHR, textStatus, errorThrown);
-        $("#_loading td").text("小説情報の取得に失敗。");
+        $('#_loading td').text('小説情報の取得に失敗。');
     });
 });
