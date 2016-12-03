@@ -425,11 +425,15 @@ $(function() {
             checkbox.on('click', options.click);
         }
         if (options.bindConfig) {
-            const configID = options.configID ? options.configID : id;
-            checkbox.prop('checked', config.get(configID, checked));
+            const configID = options.configID ? options.configID : id,
+                  configChecked = config.get(configID, checked);
+            checkbox.prop('checked', configChecked);
             checkbox.on('click', function(e) {
                 config.put(configID, e.target.checked, true);
             });
+            if (checked !== configChecked) {
+                options.click.call(checkbox[0]);
+            }
         }
         return $('<label/>', {class: 'nc-checkbox toolbox_item', for: id}).append(checkbox).append(text).appendTo(target);
     }
