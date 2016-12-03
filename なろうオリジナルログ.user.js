@@ -402,7 +402,8 @@ if (location.pathname === '/') {
         });
 
         // 基本データ
-        const novelFilters = [];
+        const novelFilters = [],
+              isR18 = location.host === 'novel18.syosetu.com';
 
         // //////////////////// キー入力 ////////////////////
         /*$(document).on('keydown', function(e) {
@@ -450,7 +451,7 @@ if (location.pathname === '/') {
                 url: 'http://localhost:8888/novels',
                 data: {
                     ncode: ncodes.join('-'), items: 't-n-u-ga-nu', limit: ncodes.length,
-                    r18: location.host === 'novel18.syosetu.com'
+                    r18: isR18
                 }
             }).done(function(res, status, xhr) {
                 console.log(res);
@@ -718,7 +719,7 @@ if (location.pathname === '/') {
 
         // R18
         // $('<label/>').append(includeR18).append('R18小説を表示する').appendTo(contents).wrap('<div id="includeR18-wrapper"/>');
-        if (location.host === 'novel18.syosetu.com')
+        if (isR18)
             contents.append('<div id="navi-normal"><a href="http://ncode.syosetu.com/">全年齢版に移動する</a></div>');
         else
             contents.append('<div id="navi-r18"><a href="http://novel18.syosetu.com/">R18版に移動する</a></div>');
