@@ -413,7 +413,7 @@ if (location.pathname === '/') {
 
         // //////////////////// ヘッダー部分 ////////////////////
         $('#novel_header').remove();
-        $('title').text('小説カスタムログ');
+        $('title').text('小説カスタムログ' + (isR18 ? '(R18)' : ''));
         const contents = $('#contents_main').empty(),
               header = $('<div id="header"/>').prependTo('#container');
 
