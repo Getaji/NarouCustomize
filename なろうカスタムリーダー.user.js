@@ -520,7 +520,16 @@ $(function() {
         }
     });
 
-    // ////////// スタイル切り替え //////////
+    const customStyle = $('head link[rel="stylesheet"]+style');
+    if (customStyle.length > 0) {
+        const css = customStyle.text();
+        createCheckbox('toggle_customStyle', '小説独自スタイル', folderView.container, {
+            click: function() {
+                customStyle.text(this.checked ? css : '');
+            }, bindConfig: true, configID: 'isEnableCustomStyle'
+        });
+    }
+
     const styleDark = $('#stylish-7');
     const head = $('head');
     createCheckbox('toggle_style', '暗色テーマ', folderView.container, {
