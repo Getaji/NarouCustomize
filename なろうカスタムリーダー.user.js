@@ -326,11 +326,11 @@ $(function() {
     // //////////////////// フッター ////////////////////
     console.debug('フッター構築中...');
     const footNav = $('<ul id="foot_nav" class="custom_link"/>').appendTo(document.body).wrap($('<div id="footer_ex"/>'));
-    function addFooterItem(id, content) {
-        return $('<div/>', {
+    function addFooterItem(id, content, options) {
+        return $('<div/>', $.extend({
             id, class: 'footer_item',
             html: content
-        }).appendTo(footNav);
+        }, options)).appendTo(footNav);
     }
 
     // ////////// タイトル・作者 //////////
