@@ -171,8 +171,10 @@ $(function() {
         $(".novel_writername").eq(0).remove();
         const firstUpAt = new Date(json.general_firstup),
               lastUpAt = new Date(json.general_lastup),
+              now = Date.now(),
               diff = Math.floor(((lastUpAt-firstUpAt)/86400000)+1);
         addInfoItem("novel_firstUp", "初回掲載日", `${firstUpAt.getFullYear()}年${firstUpAt.getMonth()+1}月${firstUpAt.getDate()}日`);
+        addInfoItem("novel_sinceLastUp", "最終更新日からの日数", `${Math.floor((now-lastUpAt.getTime())/86400000)}日`);
         addInfoItem("novel_upd", '日当りの更新頻度', `${floor(json.general_all_no/diff, 2)}upd (${diff}日間)`);  // upload per day
         const now = Date.now();
         if (now - firstUpAt.getTime() > 2592000000) {  // one month
