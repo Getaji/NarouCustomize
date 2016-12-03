@@ -334,15 +334,16 @@ $(function() {
     }
 
     // ////////// タイトル・作者 //////////
-    addFooterItem('footer_title', titleText);
+    addFooterItem('footer_title', titleHTML, {title: titleText});
     const author = $('.contents1').html().trim().split('\n')[1],
-          chapter = $('.chapter_title');
+          chapter = $('.chapter_title'),
+          chapterText = chapter.text();
     if (chapter.length > 0)
-        addFooterItem('footer_chapter', chapter.text());
+        addFooterItem('footer_chapter', chapterText, {title: chapterText});
     const authorElm = addFooterItem('footer_author', author),
           authorChild = authorElm.children();
     novel.authorName = authorElm.text().substr(3);
-    if (authorChild)
+    if (authorChild.length > 0)
         novel.authorURL = authorElm.prop('href');
 
     // ////////// 行数・文字数 //////////
