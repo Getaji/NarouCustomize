@@ -769,49 +769,49 @@ if (location.pathname === '/') {
         const novels = $('<div id="novels"/>').appendTo(contents),
               template = $.templates(`
 <div id="novel-{{:id}}" class="novel" novel-id="{{:id}}">
-<div class="novel-title">
-<a href="/{{:id}}/">{{:title}}</a>
-</div>
-<div class="novel-author">
-作者：{{if authorURL}}<a href="{{:authorURL}}">{{:authorName}}</a>{{else}}{{:authorName}}{{/if}}
-</div>
+<div class="novel-title"><a href="/{{:id}}/">{{:title}}</a></div>
+<div class="novel-author">作者：{{if authorURL}}<a href="{{:authorURL}}">{{:authorName}}</a>{{else}}{{:authorName}}{{/if}}</div>
 <div class="novel-numbers">
-<div class="novel-numLastRead">
+<div class="novel-num-lastRead">
 最新閲覧： 
 {{if pageNo > 1}}
-<a href="/{{:id}}/{{:pageNo-1}}/">&#171;</a>
+<div class="novel-naviBack inline"><a href="/{{:id}}/{{:pageNo-1}}/">&#171;</a></div>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
-{{:pageNo}}
+<div class="novel-pageNo inline">{{:pageNo}}</div>
 {{if pageNo < pageCount}}
-<a href="/{{:id}}/{{:pageNo+1}}/">&#187;</a>
+<div class="novel-naviNext inline"><a href="/{{:id}}/{{:pageNo+1}}/">&#187;</a></div>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
-{{if chapter}}{{:chapter}}{{/if}}
+{{if chapter}}<div class="novel-chapter inline">{{:chapter}}</div>{{/if}}
 <div class="novel-subtitle inline"><a href="/{{:id}}/{{:pageNo}}/">{{:subtitle}}</a></div>
-{{:date.toLocaleString()}}
+<div class="novel-date inline">{{:date.toLocaleString()}}</div>
 </div>
 {{if latestReadedNo && latestReadedNo > pageNo}}
-<div class="novel-numLastRead">
+<div class="novel-num-readed">
 読了話： 
 {{if latestReadedNo > 1}}
-<a href="/{{:id}}/{{:latestReadedNo-1}}/">&#171;</a>
+<div class="novel-naviBack inline"><a href="/{{:id}}/{{:latestReadedNo-1}}/">&#171;</a></div>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
-{{:latestReadedNo}}
+<div class="novel-pageNo inline">{{:latestReadedNo}}</div>
 {{if latestReadedNo < pageCount}}
-<a href="/{{:id}}/{{:latestReadedNo+1}}/">&#187;</a>
+<div class="novel-naviNext inline"><a href="/{{:id}}/{{:latestReadedNo+1}}/">&#187;</a></div>
 {{else}}
 &nbsp;&nbsp;
 {{/if}}
-{{if latestReadedChapter}}{{:latestReadedChapter}} {{/if}}<a href="/{{:id}}/{{:latestReadedNo}}/">{{:latestReadedSubtitle}}</a> {{:latestReadedDate.toLocaleString()}}
+{{if latestReadedChapter}}<div class="novel-chapter inline">{{:latestReadedChapter}}</div> {{/if}}
+<div class="novel-subtitle inline"><a href="/{{:id}}/{{:latestReadedNo}}/">{{:latestReadedSubtitle}}</a></div>
+<div class="novel-date inline">{{:latestReadedDate.toLocaleString()}}</div>
 </div>
 {{/if}}
 <div class="novel-numLatest">
-最新話： <a href="/{{:id}}/{{:pageCount}}/">{{:pageCount}}</a>  {{if updatedAt}}{{:updatedAt.toLocaleString()}}{{/if}}
+最新話： 
+<div class="novel-pageNo inline"><a href="/{{:id}}/{{:pageCount}}/">{{:pageCount}}</a></div>
+{{if updatedAt}}<div class="novel-date inline">{{:updatedAt.toLocaleString()}}</div>{{/if}}
 </div>
 <div class="novel-bookmarks">
 {{if bookmarksLen > 0}}
@@ -821,10 +821,10 @@ if (location.pathname === '/') {
 <tr class="novel-bookmark">
 <td class="novel-bkm-index">{{>prop.pageNo}}</td>
 <td>
-{{if prop.chapter}}{{>prop.chapter}}{{/if}}
-<a href="/{{>prop.id}}/{{>prop.pageNo}}/">{{>prop.subtitle}}</a>
-{{if prop.comment}}<span class="novel-bkm-comment">"{{>prop.comment}}"</span>{{/if}}
-{{>prop.date.toLocaleString()}}
+{{if prop.chapter}}<div class="novel-chapter inline">{{>prop.chapter}}</div>{{/if}}
+<div class="novel-subtitle inline"><a href="/{{>prop.id}}/{{>prop.pageNo}}/">{{>prop.subtitle}}</a></div>
+{{if prop.comment}}<div class="novel-bkm-comment inline">"{{>prop.comment}}"</div>{{/if}}
+<div class="novel-date inline">{{>prop.date.toLocaleString()}}</div>
 </td>
 </tr>
 {{/props}}
