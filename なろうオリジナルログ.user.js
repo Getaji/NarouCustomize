@@ -470,7 +470,7 @@ if (location.pathname === '/') {
                             updatedNovels.push(novel);
                         }
                         savedNovel.updatedAt = novel.novelupdated_at;
-                        if (!savedNovel.authorURL)
+                        if (!savedNovel.authorURL && novel.userid)
                             savedNovel.authorURL = 'http://mypage.syosetu.com/' + novel.userid + '/';
                     } else {
                         console.log('Unknown novel:', novel);
