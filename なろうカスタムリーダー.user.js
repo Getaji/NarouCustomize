@@ -203,6 +203,7 @@ $(function() {
     const contents1Items = $('.contents1').html().trim().split('\n');
 
     // //////////////////// 書き換え開始 ////////////////////
+    novel.id = location.pathname.match(/n\w+/)[0];
 
     // //////////////////// 基本CSSを差し替え ////////////////////
     const container = $('#container'),
@@ -276,7 +277,6 @@ $(function() {
           noSplit = novelNo.text().split('/');
     novel.pageNo = Number.parseInt(noSplit[0]);
     novel.pageCount = Number.parseInt(noSplit[1]);
-    novel.id = location.pathname.match(/n\w+/)[0];
     novelNo.remove();
     headNav.append(`<li id='novel_header_no'>${novel.pageNo}/${novel.pageCount}</li>`);
 
