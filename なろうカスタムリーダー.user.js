@@ -530,9 +530,10 @@ $(function() {
         });
     }
 
+    // ////////// 暗色テーマ切り替え //////////
     const styleDark = $('#stylish-7');
     const head = $('head');
-    createCheckbox('toggle_style', '暗色テーマ', folderView.container, {
+    createCheckbox('toggle_darkTheme', '暗色テーマ', folderView.container, {
         click: function() {
             if (this.checked)
                 head.append(styleDark);
