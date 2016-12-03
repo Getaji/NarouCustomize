@@ -169,15 +169,15 @@ $(function() {
         console.log(json);
 
         $(".novel_writername").eq(0).remove();
-        const firstUpAt = new Date(json.general_firstup),
+        const isEnd = json.end === 0,
+              firstUpAt = new Date(json.general_firstup),
               lastUpAt = new Date(json.general_lastup),
               now = Date.now(),
               diff = Math.floor(((lastUpAt-firstUpAt)/86400000)+1);
         addInfoItem("novel_firstUp", "初回掲載日", `${firstUpAt.getFullYear()}年${firstUpAt.getMonth()+1}月${firstUpAt.getDate()}日`);
         addInfoItem("novel_sinceLastUp", "最終更新日からの日数", `${Math.floor((now-lastUpAt.getTime())/86400000)}日`);
         addInfoItem("novel_upd", '日当りの更新頻度', `${floor(json.general_all_no/diff, 2)}upd (${diff}日間)`);  // upload per day
-        const now = Date.now();
-        if (now - firstUpAt.getTime() > 2592000000) {  // one month
+        if (!isEnd && now - firstUpAt.getTime() > 2592000000) {  // one month
             let postWithinMonth = 0;
             $('.long_update').each(function() {
                 const m = this.innerText.match(/(\d+)年 (\d+)月 (\d+)日/),
@@ -195,10 +195,10 @@ $(function() {
         }, json.writer));
 
         const storyCount = $("#novel_story_count td");
-        if (json.end === 0) {
+        if (isEnd) {
             storyCount.html(storyCount.html().replace("現在", "全"));
         }
-        storyCount.append(json.end === 1 ? "(連載中)" : "(完結済)");
+        storyCount.append(isEnd ? "(完結済)" : "(連載中)");
 
         addInfoItem("novel_length", "文字数", separateDigit(json.length) + "文字(文庫本" + floor(json.length / 100000, 1) + '冊分)');  // 文庫本1冊＝100,000文字
         const charCountAverage = floor(json.length/json.general_all_no, 2);
