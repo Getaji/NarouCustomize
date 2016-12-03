@@ -673,23 +673,33 @@ if (location.pathname === '/') {
               }).hide().appendTo(header),
               showAllTags = $('<button/>', {
                   id: 'searchBox-showAllTags', text: '全タグ', title: 'すべてのタグを表示', click: function() {
-                      const tags = [],
-                            tagsCount = {};
-                      for (const k in config.data) {
-                          for (const tag of config.data[k].tags) {
-                              if (!tags.includes(tag)) {
-                                  tags.push(tag);
-                                  tagsCount[tag] = 1;
-                              } else {
-                                  tagsCount[tag]++;
+                      if (allTagsView.css('display') !== 'none') {
+                          allTagsView.html('');
+                          allTagsView.hide();
+                      } else {
+                          allTagsView.html('構築中...');
+                          allTagsView.show();
+                          const tags = [],
+                                tagsCount = {};
+                          for (const k in config.data) {
+                              for (const tag of config.data[k].tags) {
+                                  if (!tags.includes(tag)) {
+                                      tags.push(tag);
+                                      tagsCount[tag] = 1;
+                                  } else {
+                                      tagsCount[tag]++;
+                                  }
                               }
                           }
+                          tags.sort((a, b) => {
+                              return tagsCount[b] - tagsCount[a];
+                          });
+                          allTagsView.html(tags.map(tag => {
+                              let lv = tagsCount[tag];
+                              if (lv > 5) lv = 5;
+                              return `<div class="novel-tag novel-tag-hasLv" lv=${lv}>${tag}</div>`;
+                          }).join(''));
                       }
-                      tags.sort((a, b) => {
-                          return tagsCount[b] - tagsCount[a];
-                      });
-                      allTagsView.html(tags.map(tag => '<div class="novel-tag">' + tag + '</div>').join(''));
-                      allTagsView.toggle();
                   }
               }).appendTo(searchBox),
               searchQueriesView = $('<div/>', {
