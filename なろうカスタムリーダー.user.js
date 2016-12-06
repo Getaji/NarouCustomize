@@ -664,7 +664,7 @@ $(function() {
         on: { change: () => {
             const val = replacerPatternInput.val();
             replacerRunButton.prop('disabled', val === '');
-            replacerPatternInput.prop('error', val === '');
+            replacerPatternInput.attr('error', val === '');
             config.put('replacerPattern', val, true);
         }}
     }).appendTo(replacer.container);
@@ -709,7 +709,7 @@ $(function() {
     }).appendTo(replacer.container);
     if (replacerPatternInput.val() === '') {
         replacerRunButton.prop('disabled', true);
-        replacerPatternInput.prop('error', true);
+        replacerPatternInput.attr('error', true);
     }
 
     // ////////// 拡張情報 //////////
