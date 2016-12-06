@@ -32,17 +32,22 @@ table#ex_info th {
     margin: 16px 0;
 }
 
+.chaptersHeader_opening:after {
+    content: '[クリックで閉じる]';
+    font-size: x-small;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.chaptersHeader_closing:after {
+    content: '[クリックで開く]';
+    font-size: x-small;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
 #chapters_container>* {
     margin: 8px 0;
-}
-
-#chapters_container>h3 {
-    float: left;
-    margin-right: 16px;
-}
-
-#toggle_chapter {
-    background-color: white;
 }
 
 #novel_tags>li {

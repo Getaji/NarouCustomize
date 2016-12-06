@@ -89,25 +89,21 @@ $(function() {
 
         // ////////// チャプター一覧 //////////
         $('#ex_info').after('<div id="chapters_container"><ul id="chapters"></ul></div>');
-        const chapters = $('#chapters');
-        chapters.before('<h3>目次</h3>');
-        chapters.before(buildHtml('button', {
-            id: 'toggle_chapter',
-            type: 'button',
-        }, '表示'));
+        const chapters = $('#chapters').hide(),
+              chaptersHeader = $('<h3 class="chaptersHeader chaptersHeader_closing">目次</h3>').insertBefore(chapters);
         let isShowChapters = false;
-        const buttonToggleChapter = $('#toggle_chapter');
-        $('#toggle_chapter').on('click', () => {
+        chaptersHeader.on('click', () => {
             if (isShowChapters) {
                 chapters.hide(300);
-                buttonToggleChapter.text('表示');
+                chaptersHeader.addClass('chaptersHeader_closing');
+                chaptersHeader.removeClass('chaptersHeader_opening');
             } else {
                 chapters.show(300);
-                buttonToggleChapter.text('非表示');
+                chaptersHeader.addClass('chaptersHeader_opening');
+                chaptersHeader.removeClass('chaptersHeader_closing');
             }
             isShowChapters = !isShowChapters;
         });
-        chapters.hide();
 
         $('.chapter_title').each((i, val) => {
             const id = 'chapter_' + i;
