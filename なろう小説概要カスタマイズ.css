@@ -5,13 +5,18 @@
     padding-bottom: 16px;
 }
 
-table#ex_info th,
-table#ex_info td {
+#ex_info {
+    border: 1px solid #CCC;
+    border-style: solid none;
+}
+
+#ex_info th,
+#ex_info td {
     padding: 4px 8px;
     font-size: small;
 }
 
-table#ex_info th {
+#ex_info th {
     white-space: nowrap;
 }
 
@@ -56,8 +61,8 @@ table#ex_info th {
 }
 
 #novel_ex {
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    border: 1px solid #BBB;
+    border-style: solid none;
     padding: 20px 0;
 }
 
