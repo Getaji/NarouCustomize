@@ -28,7 +28,10 @@ class Configuration {
             this.data = initialData ? initialData : {};
             localStorage.setItem(id, JSON.stringify(this.data));
         }
-        console.debug('Constructed configuration.');
+        this.log('Constructed configuration.');
+    }
+    log(...msgs) {
+        console.debug('[cfg:' + this.id + ']', ...msgs);
     }
     get(key, defaultValue, isSaveDefault=false) {
         if (key in this.data) {
@@ -37,21 +40,21 @@ class Configuration {
         if (isSaveDefault) {
             this.data[key] = defaultValue;
             this.save();
-            console.debug(`Writed new configuration: ${key} =`, valueStr(defaultValue));
+            this.log(`Writed new configuration: ${key} =`, valueStr(defaultValue));
         }
         return defaultValue;
     }
     put(key, value, isSave=false) {
         if (!isSave && this.data[key] === value) {
-            console.debug(`No changed configuration: ${key}=`, valueStr(value));
+            this.log(`No changed configuration: ${key}=`, valueStr(value));
             return;
         }
         this.data[key] = value;
         if (isSave) {
             this.save();
-            console.debug(`Put configuration: ${key}=`, valueStr(value));
+            this.log(`Put configuration: ${key}=`, valueStr(value));
         } else {
-            console.debug(`Writed configuration: ${key}=`, valueStr(value));
+            this.log(`Writed configuration: ${key}=`, valueStr(value));
         }
     }
     setStrData(s) {
@@ -59,16 +62,16 @@ class Configuration {
     }
     remove(key, isSave=true) {
         delete this.data[key];
-        console.debug('Deleted configuration:', key);
+        this.log('Deleted configuration:', key);
         if (isSave) this.save();
     }
     save() {
         localStorage.setItem(this.id, JSON.stringify(this.data));
-        console.debug('Saved configuration');
+        this.log('Saved configuration');
     }
     reload() {
         this.data = JSON.parse(localStorage.getItem(this.id), this.jsonParser);
-        console.debug('Reloaded configuration');
+        this.log('Reloaded configuration');
         return this;
     }
     asList() {
