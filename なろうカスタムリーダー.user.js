@@ -416,10 +416,24 @@ $(function() {
         onToggleToolbox(false, 0);
     }
 
+    /**
+     * チェックボックスを作成する。デフォルトではチェック状態はtrueとなる。
+     * @param {string} id - 識別子。input要素に付加される。label要素には"-label"が末尾に付加されて適用される
+     * @param {string} text - ラベルに表示するテキスト。
+     * @param {jQuery|element|string} target - チェックボックスを追加する要素。nullやundefinedが指定された場合は無視される
+     * @param {object} options - オプション。下記を参照。
+     * options {
+     *   classes: {string} - input要素に付加するクラス
+     *   checked: {boolean} - チェック状態
+     *   props: {object} - input要素構築時に渡すプロパティ
+     *   bindConfig: {boolean} - trueの場合、チェック状態をLocalStorageに保存する
+     *   configID: {string} - LocalStorageに保存する時のキー。未指定の場合チェックボックスのIDが用いられる
+     * }
+     */
     function createCheckbox(id, text, target, options={}) {
         const classes = options.classes ? options.classes : '',
               checked = options.checked === undefined ? true : options.checked,
-              _props = $.extend({id, class: classes, type: 'checkbox', checked}, options.props ? options.props : {}),
+              _props = $.extend({id, class: classes, type: 'checkbox', checked}, options.props),
               checkbox = $('<input>', _props);
         if (options.click !== undefined) {
             checkbox.on('click', options.click);
