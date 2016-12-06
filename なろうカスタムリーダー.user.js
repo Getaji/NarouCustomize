@@ -622,8 +622,8 @@ $(function() {
         [/([？！])([^\s　『「」』（）()！？(<br>)])/g, '$1　$2'],  // 感嘆符の後に空白
         [/。\s?([』」）])/g, '$1']  // 閉じカッコの前の句点を削除
     ]);
-    addReplacement('replace_tpr', '三点リーダー', /・{2,}(?!<\/rt>)/g, '……');
-    addReplacement('replace_dash', 'ダッシュ', /ー{2,}/g, '――');
+    addReplacement('replace_tpr', '……', /・{2,}(?!<\/rt>)/g, '……');
+    addReplacement('replace_dash', '――', /[ー－]{2,}/g, '――');
     addReplacement('replace_convNewline', '会話文改行削除', /\n[「『].+(?:<br>\n.+)*[」』]<br>/g, s => {
         console.log(s);
         return s.replace(/<br>\n　?/g, '');
