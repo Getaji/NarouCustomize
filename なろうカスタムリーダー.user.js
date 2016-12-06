@@ -449,7 +449,10 @@ $(function() {
                 options.click.call(checkbox[0]);
             }
         }
-        return $('<label/>', {class: 'nc-checkbox toolbox_item', for: id}).append(checkbox).append(text).appendTo(target);
+        const label = $('<label/>', {id: id + '-label',class: 'nc-checkbox toolbox_item', for: id}).append(checkbox).append(text);
+        if (target)
+            label.appendTo(target);
+        return label;
     }
 
     // ////////// 折りたたみ //////////
