@@ -219,7 +219,11 @@ $(function() {
 
         addInfoItem('novel_length', '文字数', separateDigit(json.length) + '文字(文庫本' + floor(json.length / 100000, 1) + '冊分)');  // 文庫本1冊＝100,000文字
         const charCountAverage = floor(json.length/json.general_all_no, 2);
-        addInfoItem('novel_length_avg', '平均文字数', separateDigit(charCountAverage) + '文字(原稿用紙' + floor(charCountAverage/400, 1) + '枚分)');
+        const charCountSomewhat = (charCountAverage < 2000 ? 'とても少ない' : 
+                                   (charCountAverage < 4000 ? '少ない' : 
+                                    (charCountAverage < 5000 ? '普通' : 
+                                     (charCountAverage < 10000 ? '多い' : 'とても多い'))));
+        addInfoItem('novel_length_avg', '平均文字数', separateDigit(charCountAverage) + '文字(原稿用紙' + floor(charCountAverage/400, 1) + '枚分)  独自基準：' + charCountSomewhat);
         if (!isR18) addInfoItem('novel_genre', 'ジャンル', GENRES[json.genre]);
         addInfoItem('novel_point', '評価点', separateDigit(json.all_point));
         addInfoItem('novel_reviews', 'レビュー数', json.review_cnt);
