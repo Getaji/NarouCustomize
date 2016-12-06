@@ -34,6 +34,10 @@
     background-color: #EEE;
     border: 1px solid darkgray;
 }
+.button_white:disabled {
+    background: #CCC;
+    text-decoration: line-through;
+}
 
 /* hidden for element with animation */
 .hidden {
@@ -396,6 +400,11 @@ li#novel_header_subtitle {
 
 .replacer_input:focus {
     outline: none;
+}
+
+.replacer_input[error=true] {
+    border-color: rgb(206, 52, 38);
+    border-style: solid;
 }
 
 #folder-moreInfo .toolbox_folder_container {

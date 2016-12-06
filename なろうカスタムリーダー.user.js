@@ -662,7 +662,10 @@ $(function() {
         type: 'text',
         value: config.get('replacerPattern', ''),
         on: { change: () => {
-            config.put('replacerPattern', replacerPatternInput.val(), true);
+            const val = replacerPatternInput.val();
+            replacerRunButton.prop('disabled', val === '');
+            replacerPatternInput.prop('error', val === '');
+            config.put('replacerPattern', val, true);
         }}
     }).appendTo(replacer.container);
     const replacerReplacementInput = $('<input/>', {
@@ -675,20 +678,39 @@ $(function() {
             config.put('replacerReplacement', replacerReplacementInput.val(), true);
         }}
     }).appendTo(replacer.container);
-    $('<button/>', {
+    const replacerLBLCheckbox = createCheckbox('replacer_checkbox_replaceLineByLines', '行ごとに置換', replacer.container, {
+        checked: false, bindConfig: true, configID: 'replacerLBL'
+    }).children();
+    const replacerRunButton = $('<button/>', {
         id: 'replacer_run',
         class: 'button_white replacer_item',
         text: '置換を実行',
         click: function() {
-            const pattern = RegExp(unescape(replacerPatternInput.val()), 'gm');
+            const pattern = RegExp(unescape(replacerPatternInput.val()), 'g' + (replacerLBLCheckbox.attr('checked') ? 'm' : ''));
             const replacement = unescape(replacerReplacementInput.val());
-            console.log(`'${pattern}' -> '${replacement}'`);
-            if (pattern !== '' && replacement !== '') {
-                const honbun = $('#novel_honbun');
-                honbun.replaceHTML(pattern, replacement);
+            if (pattern !== '') {
+                const honbun = $('#novel_honbun'),
+                      sel = document.getSelection().toString();
+                if (sel) {
+                    if (confirm('選択文字列を対象に実行しますか？\n※選択文字列と同一の全ての文字列が対象になります\n\n"' + sel + '"')) {
+                        honbun.replaceHTML(sel, function(s) {
+                            return s.replace(pattern, replacement);
+                        });
+                        console.log(`${sel}('${pattern}' -> '${replacement}')`);
+                        popup(`置換しました：'${pattern}' -> '${replacement}'`);
+                    }
+                } else {
+                    honbun.replaceHTML(pattern, replacement);
+                    console.log(`'${pattern}' -> '${replacement}'`);
+                    popup(`置換しました：'${pattern}' -> '${replacement}'`);
+                }
             }
         }
     }).appendTo(replacer.container);
+    if (replacerPatternInput.val() === '') {
+        replacerRunButton.prop('disabled', true);
+        replacerPatternInput.prop('error', true);
+    }
 
     // ////////// 拡張情報 //////////
     const moreInfoFolder = createFolder('拡張情報', 'moreInfo', toolboxList);
