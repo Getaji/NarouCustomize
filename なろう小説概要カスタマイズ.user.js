@@ -170,8 +170,13 @@ $(function() {
     if (isR18)
         query.r18 = true;
     $.get('http://localhost:8888/novels', query).done(function(data, status, jqXHR) {
-        $('#_loading').remove();
+        console.log(data);
         const json = JSON.parse(data)[1];
+        if (!json) {
+            $('#_loading td').text('小説のデータが見つかりませんでした');
+            return;
+        }
+        $('#_loading').remove();
         console.log(json);
 
         const writerNameLink = $('.novel_writername a');
