@@ -61,14 +61,14 @@ table#ex_info th {
     padding: 20px 0;
 }
 
-.chapter_title {
+.chapter_title, .chaptersHeader {
     cursor: pointer;
     padding: 4px 0 0 0 !important;
     margin-top: 30px;
 }
 
-.chapter_title:hover {
-    background-color: rgba(0, 0, 0, .1);
+.chapter_title:hover, .chaptersHeader:hover {
+    background-color: rgba(0, 0, 0, .07);
 }
 
 .subtitle .story_number {
@@ -81,6 +81,20 @@ table#ex_info th {
     font-size: small;
     margin-left: 16px;
     color: gray;
+}
+
+.sublists_opening:after {
+    content: '[クリックで閉じる]';
+    font-size: x-small;
+    font-weight: normal;
+    margin-left: 20px;
+}
+
+.sublists_closing:after {
+    content: '[クリックで開く]';
+    font-size: x-small;
+    font-weight: normal;
+    margin-left: 20px;
 }
 
 /* overwrite */

@@ -121,6 +121,7 @@ $(function() {
         let sublist_i = 0;
         $('.chapter_title,.novel_sublist2').each((i, val) => {
             const self = $(val);
+            let isOpening = true;
             if (self.hasClass('chapter_title')) {
                 nowChapter = self.attr('chapter');
                 nowContainer = $('<div/>', {
@@ -128,9 +129,18 @@ $(function() {
                     'chapter': nowChapter,
                 }).insertAfter(self);
                 self.attr('title', 'クリックで折りたたみ');
+                self.addClass('sublists_opening');
                 self.on('click', function() {
                     const container = self.next();
                     container.slideToggle(200);
+                    isOpening = !isOpening;
+                    if (isOpening) {
+                        self.addClass('chaptersHeader_opening');
+                        self.removeClass('chaptersHeader_closing');
+                    } else {
+                        self.addClass('chaptersHeader_closing');
+                        self.removeClass('chaptersHeader_opening');
+                    }
                 });
             } else {
                 self.attr('chapter', nowChapter);
